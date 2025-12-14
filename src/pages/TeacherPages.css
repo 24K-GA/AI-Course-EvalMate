@@ -1,0 +1,242 @@
+/* 教师端页面 Soft UI 优化 */
+.teacher-page {
+    padding: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+
+.page-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.team-count {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.team-count strong {
+    color: var(--primary);
+    font-weight: 800;
+    margin: 0 0.25rem;
+}
+
+/* 团队卡片列表 */
+.teams-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.team-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    /* Rounded-2xl */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.team-item:hover {
+    border-color: var(--primary-soft);
+    box-shadow: var(--shadow-sm);
+    transform: translateX(4px);
+}
+
+.team-item.active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.team-avatar {
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-page);
+    border-radius: 16px;
+}
+
+.team-item.active .team-avatar {
+    background: white;
+}
+
+.team-name {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+.team-member-count {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* 编辑区域 */
+.edit-panel {
+    position: sticky;
+    top: 2rem;
+}
+
+/* 滑块优化 (SoftSlider) */
+.score-slider {
+    margin-bottom: 2rem;
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.slider-header label {
+    font-weight: 700;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.slider-value {
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 0.25rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    min-width: 60px;
+    text-align: center;
+}
+
+.slider-track-wrapper {
+    position: relative;
+    height: 12px;
+    background: var(--border-light);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.slider-track-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #fcd34d 0%, var(--primary) 100%);
+    border-radius: 9999px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 提问评定卡片 */
+.question-card {
+    padding: 1.25rem;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.question-card:hover {
+    border-color: var(--primary-soft);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.question-card.active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.question-header {
+    margin-bottom: 0.75rem;
+}
+
+.question-target {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-page);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+}
+
+.question-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+/* 评分按钮组 */
+.score-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.score-btn {
+    flex: 1;
+    height: 40px;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    background: white;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.score-btn:hover {
+    background: var(--bg-page);
+    color: var(--text-main);
+}
+
+.score-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 10px rgba(251, 146, 60, 0.3);
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+
+    .team-management-grid,
+    .question-scoring-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-panel {
+        position: static;
+    }
+}

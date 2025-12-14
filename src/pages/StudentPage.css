@@ -1,0 +1,253 @@
+/* 学生端 Soft UI 样式 */
+.student-page {
+    min-height: 100vh;
+    background: var(--bg-page);
+    padding: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 顶部卡片 */
+.student-header {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-light);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.my-team-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.my-team-info .team-avatar {
+    width: 52px;
+    height: 52px;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 16px;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-team-info .team-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+.my-team-info .team-name {
+    font-weight: 900;
+    color: var(--text-main);
+    font-size: 1.1rem;
+}
+
+/* 进度条 */
+.question-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.progress-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.progress-label span.completed {
+    color: var(--success);
+    background: var(--success-bg);
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+}
+
+.progress-bar {
+    width: 140px;
+    height: 8px;
+    background: var(--border-light);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, var(--primary), #fbbf24);
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 当前展示卡片 */
+.current-presentation {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.current-presentation.my-turn {
+    background: linear-gradient(135deg, var(--primary), #ea580c);
+    border: none;
+}
+
+.current-presentation.my-turn h2,
+.current-presentation.my-turn p {
+    color: white;
+}
+
+.current-presentation.waiting {
+    background: #f1f5f9;
+    border: 2px dashed #cbd5e1;
+    box-shadow: none;
+}
+
+.team-avatar-lg {
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+    background: var(--bg-page);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.presentation-info h2 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+/* 互评卡片 & 提问卡片 */
+.peer-scoring-card,
+.question-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+    /* Softer float shadow */
+    border: 1px solid var(--border-light);
+    margin-bottom: 2rem;
+}
+
+.card-header h3 {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-main);
+}
+
+.score-item {
+    background: var(--bg-page);
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 1rem;
+}
+
+.score-value {
+    color: var(--primary);
+}
+
+.score-btn {
+    height: 44px;
+    border: 1px solid transparent;
+    background: white;
+    color: var(--text-secondary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+}
+
+.score-btn:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+}
+
+.score-btn.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(251, 146, 60, 0.3);
+}
+
+/* 提问输入框 */
+.question-input {
+    background: #f8fafc;
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.question-input:focus {
+    background: white;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.question-item {
+    background: #f1f5f9;
+    padding: 1rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+}
+
+.question-target {
+    font-weight: 800;
+    color: var(--text-main);
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.question-text {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .student-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+        padding: 1.25rem;
+    }
+
+    .question-progress {
+        align-items: flex-start;
+    }
+
+    .progress-bar {
+        width: 100%;
+    }
+
+    .student-main-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,144 @@
+/* 成绩汇总页 Soft UI 样式 */
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1.1;
+}
+
+/* 排行榜表格卡片 */
+.ranking-table-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-light);
+    padding: 0;
+    /* Remove padding for table consistency */
+    overflow: hidden;
+}
+
+.table-header {
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.table-header h2 {
+    font-size: 1.25rem;
+}
+
+.ranking-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.ranking-table th {
+    background: #f8fafc;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.ranking-table td {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.1s;
+}
+
+.ranking-table tr:last-child td {
+    border-bottom: none;
+}
+
+.ranking-table tr:hover td {
+    background: #f8fafc;
+}
+
+/* 前三名高亮 */
+.ranking-table tr.top-1 td {
+    background: linear-gradient(90deg, #fffbeb 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.ranking-table tr.top-2 td {
+    background: linear-gradient(90deg, #f8fafc 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.ranking-table tr.top-3 td {
+    background: linear-gradient(90deg, #fff7ed 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.rank-badge {
+    font-weight: 800;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.rank-badge:not(.rank-1):not(.rank-2):not(.rank-3) {
+    background: var(--border-light);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.team-avatar-sm {
+    background: var(--bg-page);
+    border-radius: 12px;
+}
+
+.team-project {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.8rem;
+}
+
+.total-cell {
+    color: var(--primary);
+}
