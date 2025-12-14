@@ -58,7 +58,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/your-username/AI-Course-EvalMate.git
+git clone https://github.com/24K-GA/AI-Course-EvalMate.git
 cd AI-Course-EvalMate
 
 # 安装依赖
@@ -69,6 +69,19 @@ npm run dev
 ```
 
 打开 http://localhost:5173 即可访问。
+
+### 🐳 Docker 部署
+
+```bash
+# 使用 docker-compose（推荐）
+docker-compose up -d
+
+# 或者手动构建运行
+docker build -t ai-course-evalmate .
+docker run -d -p 3000:80 --name evalmate ai-course-evalmate
+```
+
+Docker 部署后访问 http://localhost:3000
 
 ## 📊 评分体系
 
