@@ -1,9 +1,29 @@
 version: '3.8'
 
 services:
-  evalmate:
-    build: .
-    container_name: ai-course-evalmate
+  # 后端 API 服务
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: evalmate-api
+    ports:
+      - "3001:3001"
+    volumes:
+      - evalmate-data:/app/data
+    restart: unless-stopped
+
+  # 前端服务
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: evalmate-web
     ports:
       - "3000:80"
+    depends_on:
+      - api
     restart: unless-stopped
+
+volumes:
+  evalmate-data:

@@ -73,15 +73,17 @@ npm run dev
 ### 🐳 Docker 部署
 
 ```bash
-# 使用 docker-compose（推荐）
+# 使用 docker-compose 启动（前后端分离）
 docker-compose up -d
 
-# 或者手动构建运行
-docker build -t ai-course-evalmate .
-docker run -d -p 3000:80 --name evalmate ai-course-evalmate
+# 查看运行状态
+docker-compose ps
 ```
 
-Docker 部署后访问 http://localhost:3000
+- 前端访问：http://localhost:3000
+- 后端 API：http://localhost:3001
+
+> **注意**：使用 Docker 部署后，数据会保存在服务器端，多设备访问的数据是同步的。
 
 ## 📊 评分体系
 
