@@ -230,6 +230,97 @@
     font-size: 0.95rem;
 }
 
+/* 团队选择界面样式 (User Fix Request) */
+.team-selection {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.team-selection h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.team-selection p {
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+}
+
+.team-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.team-select-btn {
+    background: white;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 100%;
+}
+
+.team-select-btn:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+}
+
+.team-select-btn .team-avatar {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    width: 80px;
+    height: 80px;
+    background: var(--bg-page);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.team-select-btn:hover .team-avatar {
+    background: white;
+}
+
+.team-info {
+    text-align: center;
+}
+
+.team-name {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.team-project {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-muted);
+    padding: 4rem;
+}
+
 /* 响应式 */
 @media (max-width: 768px) {
     .student-header {
@@ -249,5 +340,9 @@
 
     .student-main-grid {
         grid-template-columns: 1fr;
+    }
+
+    .team-selection-grid {
+        grid-template-columns: 1fr 1fr;
     }
 }
