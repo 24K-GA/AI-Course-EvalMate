@@ -1,8 +1,8 @@
 // 大屏展示页面
 import { useState, useEffect } from 'react';
-import { Clock, Users, MessageSquare, Trophy, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { Clock, Users, MessageSquare, Trophy, ChevronLeft, ChevronRight, Play, Pause, Zap } from 'lucide-react';
 import type { Team, Question, SessionStatus } from '../types';
-import { getTeams, getQuestions, getSessionStatus, saveSessionStatus, STORAGE_KEYS, subscribe } from '../store/storage';
+import { getTeams, getQuestions, getSessionStatus, saveSessionStatus, startRush, stopRush, clearRushWinner, STORAGE_KEYS, subscribe } from '../store/storage';
 import { getRankings, getQuestionStats, formatTime } from '../utils/scoreCalculator';
 import './BigScreen.css';
 
@@ -142,6 +142,51 @@ export default function BigScreen() {
                     <button className="nav-btn" onClick={() => switchTeam('next')}>
                         <ChevronRight size={32} />
                     </button>
+                </section>
+
+                {/* 抢答展示区 */}
+                <section className="rush-display-section">
+                    <div className="rush-controls">
+                        {!session.rushEnabled && !session.rushWinner && (
+                            <button className="rush-control-btn start" onClick={startRush}>
+                                <Zap size={24} /> 开启抢答
+                            </button>
+                        )}
+                        {session.rushEnabled && (
+                            <button className="rush-control-btn stop" onClick={stopRush}>
+                                关闭抢答
+                            </button>
+                        )}
+                        {session.rushWinner && (
+                            <button className="rush-control-btn clear" onClick={clearRushWinner}>
+                                清除抢答结果
+                            </button>
+                        )}
+                    </div>
+
+                    <div className={`rush-status ${session.rushEnabled ? 'active' : ''} ${session.rushWinner ? 'winner' : ''}`}>
+                        {session.rushEnabled && (
+                            <div className="rush-waiting-display">
+                                <Zap className="zap-icon" size={48} />
+                                <span className="rush-hint">抢答进行中！</span>
+                            </div>
+                        )}
+                        {session.rushWinner && (
+                            <div className="rush-winner">
+                                <span className="winner-emoji">🎉</span>
+                                <span className="winner-text">
+                                    第{session.rushWinner.groupNumber}组 - {session.rushWinner.teamName}
+                                </span>
+                                <span className="winner-label">抢答成功！</span>
+                            </div>
+                        )}
+                        {!session.rushEnabled && !session.rushWinner && (
+                            <div className="rush-idle">
+                                <Zap size={24} />
+                                <span>点击"开启抢答"开始</span>
+                            </div>
+                        )}
+                    </div>
                 </section>
 
                 {/* 排行榜和提问区 */}

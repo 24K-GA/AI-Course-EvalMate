@@ -67,6 +67,17 @@ export interface SessionStatus {
   timerRunning: boolean;
   timeLeft: number;             // 剩余秒数
   phase: 'setup' | 'presenting' | 'scoring' | 'finished';
+  // 抢答功能
+  rushEnabled: boolean;              // 抢答是否开启
+  rushWinner: RushAnswer | null;     // 抢答成功者
+}
+
+// 抢答记录
+export interface RushAnswer {
+  teamId: string;
+  teamName: string;
+  groupNumber: number;
+  timestamp: number;
 }
 
 // 团队综合成绩

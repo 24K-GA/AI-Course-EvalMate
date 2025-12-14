@@ -156,12 +156,60 @@ export function getSessionStatus(): SessionStatus {
         timerRunning: false,
         timeLeft: 600, // 10分钟
         phase: 'setup',
+        rushEnabled: false,
+        rushWinner: null,
     });
 }
 
 export function saveSessionStatus(status: SessionStatus): void {
     setItem(STORAGE_KEYS.SESSION, status);
     notify(STORAGE_KEYS.SESSION);
+}
+
+// ========== 抢答功能 ==========
+export function startRush(): void {
+    const session = getSessionStatus();
+    saveSessionStatus({
+        ...session,
+        rushEnabled: true,
+        rushWinner: null,
+    });
+}
+
+export function stopRush(): void {
+    const session = getSessionStatus();
+    saveSessionStatus({
+        ...session,
+        rushEnabled: false,
+    });
+}
+
+export function tryRush(teamId: string, teamName: string, groupNumber: number): boolean {
+    const session = getSessionStatus();
+    // 只有在抢答开启且没有人抢到时才能抢答成功
+    if (!session.rushEnabled || session.rushWinner) {
+        return false;
+    }
+
+    saveSessionStatus({
+        ...session,
+        rushEnabled: false, // 抢答成功后关闭
+        rushWinner: {
+            teamId,
+            teamName,
+            groupNumber,
+            timestamp: Date.now(),
+        },
+    });
+    return true;
+}
+
+export function clearRushWinner(): void {
+    const session = getSessionStatus();
+    saveSessionStatus({
+        ...session,
+        rushWinner: null,
+    });
 }
 
 // ========== 清空所有数据 ==========

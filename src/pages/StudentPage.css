@@ -321,6 +321,101 @@
     padding: 4rem;
 }
 
+/* 抢答区域样式 */
+.rush-section {
+    margin-bottom: 2rem;
+}
+
+.rush-btn {
+    width: 100%;
+    padding: 2rem;
+    border: none;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: all 0.2s;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+    animation: pulse-rush 1.5s infinite;
+}
+
+@keyframes pulse-rush {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.rush-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+}
+
+.rush-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.rush-btn:disabled {
+    animation: none;
+    cursor: default;
+}
+
+.rush-btn.success {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+}
+
+.rush-btn.failed {
+    background: linear-gradient(135deg, #94a3b8, #64748b);
+    box-shadow: 0 10px 30px rgba(148, 163, 184, 0.4);
+}
+
+.rush-winner-display {
+    background: linear-gradient(135deg, #fef3c7, #fcd34d);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border: 2px solid #f59e0b;
+}
+
+.winner-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #92400e;
+}
+
+.winner-team {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #78350f;
+}
+
+.rush-waiting {
+    background: var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
 /* 响应式 */
 @media (max-width: 768px) {
     .student-header {

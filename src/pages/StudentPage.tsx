@@ -1,6 +1,6 @@
 // 学生端 - 互评与提问页面
 import { useState, useEffect } from 'react';
-import { Star, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Star, MessageSquare, Send, CheckCircle, AlertCircle, Zap } from 'lucide-react';
 import type { Team, PeerScore, Question, SessionStatus } from '../types';
 import {
     getTeams,
@@ -9,6 +9,7 @@ import {
     savePeerScore,
     saveQuestion,
     getQuestionsByAskingTeam,
+    tryRush,
     STORAGE_KEYS,
     subscribe
 } from '../store/storage';
@@ -32,6 +33,9 @@ export default function StudentPage() {
     // 提问
     const [questionText, setQuestionText] = useState('');
     const [submitting, setSubmitting] = useState(false);
+
+    // 抢答状态
+    const [rushResult, setRushResult] = useState<'none' | 'success' | 'failed'>('none');
 
     const loadData = () => {
         const loadedTeams = getTeams();
@@ -117,6 +121,18 @@ export default function StudentPage() {
         setQuestionText('');
         setSubmitting(false);
         setMyQuestions([...myQuestions, question]);
+    };
+
+    // 抢答处理
+    const handleRush = () => {
+        if (!myTeamId || !myTeam) return;
+        if (myTeamId === session.activeTeamId) return; // 不能在自己展示时抢答
+
+        const success = tryRush(myTeamId, myTeam.name, myTeam.groupNumber);
+        setRushResult(success ? 'success' : 'failed');
+
+        // 3秒后重置提示
+        setTimeout(() => setRushResult('none'), 3000);
     };
 
     // 选择我的团队
@@ -216,7 +232,33 @@ export default function StudentPage() {
                 </div>
             )}
 
-            {/* 主要内容区 */}
+            {/* 抢答区域 - 只有在其他团队展示时显示 */}
+            {activeTeam && activeTeam.id !== myTeamId && (
+                <div className="rush-section">
+                    {session.rushEnabled ? (
+                        <button
+                            className={`rush-btn ${rushResult === 'success' ? 'success' : rushResult === 'failed' ? 'failed' : ''}`}
+                            onClick={handleRush}
+                            disabled={rushResult !== 'none'}
+                        >
+                            <Zap size={24} />
+                            {rushResult === 'none' && '抢答！'}
+                            {rushResult === 'success' && '🎉 抢答成功！'}
+                            {rushResult === 'failed' && '😕 被抢走了...'}
+                        </button>
+                    ) : session.rushWinner ? (
+                        <div className="rush-winner-display">
+                            <span className="winner-label">🎯 抢答成功</span>
+                            <span className="winner-team">第{session.rushWinner.groupNumber}组 - {session.rushWinner.teamName}</span>
+                        </div>
+                    ) : (
+                        <div className="rush-waiting">
+                            <Zap size={20} />
+                            <span>等待教师开启抢答...</span>
+                        </div>
+                    )}
+                </div>
+            )}
             {activeTeam && activeTeam.id !== myTeamId && (
                 <div className="student-main-grid">
                     {/* 互评卡片 */}
